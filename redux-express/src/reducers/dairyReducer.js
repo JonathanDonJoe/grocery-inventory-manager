@@ -1,29 +1,31 @@
+import { get } from "https";
+
 //  All reducers have 2 params: Current statement (usually provide a default) and the action object
 
-const seedData = [
-    {
-        food: 'cheese',
-        quantity: 1
-    },
-    {
-        food: 'milk',
-        quantity: 37
-    },
-    {
-        food: 'yogurt',
-        quantity: 75
-    },
-    {
-        food: 'kefir',
-        quantity: 3
-    }
-]
+// const seedData = [
+//     {
+//         food: 'cheese',
+//         quantity: 1
+//     },
+//     {
+//         food: 'milk',
+//         quantity: 37
+//     },
+//     {
+//         food: 'yogurt',
+//         quantity: 75
+//     },
+//     {
+//         food: 'kefir',
+//         quantity: 3
+//     }
+// ]
 
 
 
 
 
-export default(state = seedData, action) => {
+export default(state = [], action) => {
     // console.log('Dairy Reducer is running!');
     // console.log(action.type)
     if (action.type === 'updateDairy') {
@@ -37,7 +39,7 @@ export default(state = seedData, action) => {
     } else if (action.type === 'clearInventory') {
         return [];
     } else if (action.type === 'resetInventory') {
-        return seedData;
+        return [];
     } else if (action.type === 'addItem-Dairy') {
         let newState = [...state];
         const {food, quantity} = action.payload;
@@ -46,6 +48,8 @@ export default(state = seedData, action) => {
             quantity: quantity
         });
         return newState;
+    } else if (action.type === 'getInv-dairy') {
+        return action.payload;
     } else {
         return state;
     }

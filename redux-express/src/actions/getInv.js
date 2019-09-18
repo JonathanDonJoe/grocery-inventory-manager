@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-export default (dept) => {
+export default async (dept) => {
     const getDairyUrl = `${window.apiHost}/dairy-inv`
-    const data = axios.get(getDairyUrl);
+    const data = await axios.get(getDairyUrl);
+    console.log(data.data)
     return ({
         type:`getInv-${dept}`,
-        payload: data
+        payload: data.data
     })
 }
