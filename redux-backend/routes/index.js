@@ -1,27 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../db');
+
 
 router.get('/dairy-inv', (req, res, next) => {
-	const seedData = [
-		{
-			food: 'cheese',
-			quantity: 1
-		},
-		{
-			food: 'milk',
-			quantity: 37
-		},
-		{
-			food: 'yogurt',
-			quantity: 75
-		},
-		{
-			food: 'kefir',
-			quantity: 3
-		}
-	]
+	// 
 	
-	res.json(seedData);
+	const getDairyQuery = `SELECT * FROM dairy`;
+	db.query(getDairyQuery, (err, results) => {
+		if (err) {
+			throw err
+		}
+		res.json(results);
+	})
+	
 	
 })
 
